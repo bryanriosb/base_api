@@ -3,6 +3,16 @@ import os
 from dotenv import set_key, load_dotenv
 
 
+"""
+This file is required to avoid allowed host error in production.
+And allows to add ip instances when scale group is enabled
+to cover demands.
+
+This file is activated by systemd service with python host.py command
+when instance is starting.
+"""
+
+
 env_file_path = os.path.join('.envs', '.pro', '.django')
 load_dotenv(dotenv_path=env_file_path)
 
