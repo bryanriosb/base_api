@@ -1,0 +1,19 @@
+DJANGO_SETTINGS_MODULE=drifti.config.pro
+DJANGO_SECRET_KEY=gMur>;i$*_A'taH)vs$P>hz!/zp-Kg.,58>]zt.7LVs}4sNRzt^}t?L!;c[xL^
+
+# Redis
+REDIS_URL=redis://domain.com:6379
+
+# Email
+EMAIL_HOST_USER=drifti@gmail.com
+EMAIL_HOST_PASSWORD=12345678
+
+AWS_ACCESS_KEY_ID=AKIA3FTTWCJVM5UNPH1p
+AWS_SECRET_ACCESS_KEY=JUnKcbOzcpEUZauO5YVfuqnotrj4EEPjVrmUc3oY
+AWS_REGION_NAME=us-east-1
+AWS_USER_ARN=arn:aws:iam::767968023146:user/Drifti
+AWS_STORAGE_BUCKET_NAME=drifti
+
+# Front End
+CLIENT_HOST=http://localhost:5173
+

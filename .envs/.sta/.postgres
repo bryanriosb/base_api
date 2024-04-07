@@ -1,0 +1,6 @@
+# PostgreSQL
+POSTGRES_HOST=drifti.cmztjxu1sxgy.us-east-1.rds.amazonaws.com
+POSTGRES_DB=drifti
+POSTGRES_USER=AO6XrN5SZG
+POSTGRES_PASSWORD=HtCOCxuG5DTcBQ08ejHJvp3XaKvb6YTo
+POSTGRES_PORT=5432

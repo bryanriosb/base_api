@@ -1,0 +1,61 @@
+#Django
+Django==4.2
+
+# DRF
+djangorestframework==3.14.0
+drf-yasg==1.21.4
+django-filter==22.1
+drf-spectacular[sidecar]==0.24.2
+djangorestframework-simplejwt==5.2.2
+
+# Celery
+celery==5.3.6
+flower==2.0.1
+django-celery-beat==2.6.0
+django-celery-results==2.4.0
+tenant-schemas-celery==2.2.0
+
+# DB
+psycopg2-binary==2.9.5
+
+# Passwords security
+argon2-cffi==21.3.0
+
+# Channels
+channels[daphne]==4.0.0
+channels-redis==4.0.0
+
+# Django Tenants
+django-tenants==3.6.1
+
+# JWT
+pyjwt==2.6.0
+
+# Utils
+Pillow
+ipython
+python-dotenv==0.21.0
+
+# CORS
+django-cors-headers==3.13.0
+
+# Countries
+django-countries==7.4.2
+
+# Currency
+currencies==2020.12.12
+
+# OTP
+pyotp==2.7.0
+
+# Pandas
+pandas==2.1.3
+openpyxl==3.1.2
+
+# Pycryptodome
+pycryptodome==3.17
+
+# Import - Export Data
+django-import-export==3.3.3
+XlsxWriter==3.1.9
+

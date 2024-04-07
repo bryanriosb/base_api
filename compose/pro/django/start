@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+<<<<<<< HEAD
+=======
+
+# Add instance IP to allowed hosts
+chmod 777 host.py
+python host.py $(curl -s ifconfig.me) $(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+
+>>>>>>> 46b4248 (Add private ip host file)
+# Run production server
+python manage.py  collectstatic --noinput
+daphne -b 0.0.0.0 -p 8000 drifti.asgi:application

@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/sta/nginx/nginx.Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+    volumes:
+      - ./drifti/static:/app/drifti/static/
+
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/sta/django/Dockerfile
+    image: sta_drifti_django
+    volumes:
+      - .:/app
+      - ./drifti/static:/app/drifti/static/
+    env_file:
+      - ./.envs/.sta/.django
+      - ./.envs/.sta/.postgres
+    command: /start
+    deploy:
+      mode: replicated
+      replicas: 3
+      endpoint_mode: vip
+
+#  celery_worker:
+#    <<: *django
+#    image: drifti_celeryworker
+#    depends_on:
+#      - django
+#    ports: [ ]
+#    command: /start-celeryworker
+#
+#  celery_beat:
+#    <<: *django
+#    image: drifti_celerybeat
+#    depends_on:
+#      - django
+#    ports: [ ]
+#    command: /start-celerybeat
+#
+#  celery_flower:
+#    <<: *django
+#    image: drifti_flower
+#    ports:
+#      - "5557:5555"
+#    command: /start-flower

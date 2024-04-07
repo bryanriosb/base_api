@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/pro/nginx/nginx.Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+    volumes:
+      - ./drifti/static:/app/drifti/static/
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/pro/django/Dockerfile
+    image: django
+    volumes:
+      - .:/app
+      - ./drifti/static:/app/drifti/static/
+    env_file:
+      - ./.envs/.pro/.django
+      - ./.envs/.pro/.postgres
+    command: /start

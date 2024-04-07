@@ -1,0 +1,7 @@
+# PostgreSQL
+POSTGRES_HOST=proxy-1708962045002-drifti.proxy-cmztjxu1sxgy.us-east-1.rds.amazonaws.com
+POSTGRES_HOST_REPLICA=proxy-1708962045002-drifti-read-only.endpoint.proxy-cmztjxu1sxgy.us-east-1.rds.amazonaws.com
+POSTGRES_DB=drifti
+POSTGRES_USER=AO6XrN5SZG
+POSTGRES_PASSWORD=ttCOKCxue7DTcBQ58ejHJvp3XaKvb6YTi
+POSTGRES_PORT=5432

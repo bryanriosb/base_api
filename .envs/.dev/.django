@@ -1,0 +1,31 @@
+DJANGO_SETTINGS_MODULE=drifti.config.dev
+DJANGO_SECRET_KEY=*bQE=R3$#&{(heZ120c9?z1$Fx807HiB-{iiD]^aC5#h$[5,FKN5;MVbh^Npkhr
+
+# Fernet
+ENCRYPT_KEY=Eqg2vymbpYtonyFn3GUYpqajdKZoZ9SgP2QZXnGbxOc=
+
+# AES
+AES_KEY=kWJRZVRsC21ecTR0N9dOeg==
+AES_IV=WkwOL1JlVWpXblpyNHU35A==
+
+# JWT
+JWT_KEY=JZsJ1sMWEh4lhVE2MvvEVe3YX7DNxGiB
+
+# Redis
+REDIS_URL=redis://redis:6379/0
+
+# Flower
+CELERY_FLOWER_USER=5Nlydbm3hdjhshg
+CELERY_FLOWER_PASSWORD=xpmiOu5KD9GYqud7ygdZ1fIktnmhawWI
+
+# Celery
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+# Email
+EMAIL_HOST_USER=drifti@gmail.com
+EMAIL_HOST_PASSWORD=12345678
+
+# Front End
+CLIENT_HOST=http://localhost:5173
+

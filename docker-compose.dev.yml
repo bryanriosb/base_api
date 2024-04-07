@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/dev/nginx/nginx.Dockerfile
+    depends_on:
+      - django
+    ports:
+      - "8000:8000"
+
+  django: &django
+    build:
+      context: .
+      dockerfile: compose/dev/django/Dockerfile
+    image: dev_drifti_django
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.dev/.django
+      - ./.envs/.dev/.postgres
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: compose/dev/postgres/Dockerfile
+    image: dev_drifti_postgres
+    volumes:
+      - ./postgres/postgres_drifti_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.dev/.postgres
+    ports:
+      - "6433:5432/tcp"
+
+# Enable to work with async tasks
+  redis:
+    image: redis:7.0.5-alpine
+
+  celery_worker:
+    <<: *django
+    image: drifti_celeryworker
+    depends_on:
+      - redis
+      - postgres
+    command: /start-celeryworker
+
+  celery_beat:
+    <<: *django
+    image: drifti_celerybeat
+    depends_on:
+      - redis
+      - postgres
+    command: /start-celerybeat
+
+  celery_flower:
+    <<: *django
+    image: drifti_flower
+    ports:
+      - "5557:5555"
+    command: /start-flower
+    depends_on:
+      - redis
+      - postgres
