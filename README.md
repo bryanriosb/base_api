@@ -1,10 +1,11 @@
-# drifti
-ERP to small providers
+# Drifti
+ERP to small providers. The selected architecture was for a SaaS (Software As A Service) 
+type project in this sense divide customers data into Postgres schemas.
 
 ## Characteristics
 - Django REST Framework
 - PostgreSQL
-- Django Tenants (To SaaS architecture from schemas)
+- Django Tenants (Tenant schemas)
 - Django Channel (Websocket)
 - Celery (Workers to asynchronously tasks)
 - Celery Beat (Periodic tasks to workers)
@@ -13,6 +14,65 @@ ERP to small providers
 ## Development
 At this point, docker and docker compose must be installed.
 
+## Set Environment Variables
+In root create environment folder name `.envs` and subdirectories `.dev`, `.sta`, `.pro` and each one is composed
+of a `.django` and a `.postgres` file. Set the following variables:
+
+Files: `.envs/.dev/.django  - .envs/.sta/.django  - .envs/.pro/.django`
+```text
+# Django
+DJANGO_SETTINGS_MODULE: Django config file (e.i drifti.config.dev)
+DJANGO_SECRET_KEY: Django secret key
+
+# Encrypt data (common/utils/protect_data module)
+ENCRYPT_KEY: Fernet secret
+AES_KEY: AES encryption 128 bit key in base64 (e.i aeJRZVRsC21pcTR0N2dOeg==)
+AES_IV: AES IV 128 bit key in base64 (e.i vpJRZVRsC21tcTR0N2dOeg==)
+JWT_KEY: Json Web Token secret key
+
+# Cache
+REDIS_URL=redis://redis:6379/0
+
+# Async tasks
+CELERY_FLOWER_USER: Celery flower user
+CELERY_FLOWER_PASSWORD: Celery flower password
+CELERY_BROKER_URL: redis://redis:6379/0
+CELERY_RESULT_BACKEND: redis://redis:6379/0
+
+# Email
+EMAIL_HOST_USER: drifti@email.com
+EMAIL_HOST_PASSWORD: 12345678
+
+# To reference client host to different process
+CLIENT_HOST: http://localhost:5173 # e.i Required to sign up email verification
+```
+
+Files: `.envs/.sta/.django  - .envs/.pro/.django`
+```text
+# Static storage
+AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXX
+AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXX
+AWS_REGION_NAME=us-east-1
+AWS_USER_ARN=XXXXXXXXXXXXXXXX
+AWS_STORAGE_BUCKET_NAME=XXXXXXXXXXXXXXXX
+```
+
+Files: `.envs/.sta/.django  - .envs/.pro/.django`
+```text
+# Static storage
+AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXX
+AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXX
+AWS_REGION_NAME=us-east-1
+AWS_USER_ARN=XXXXXXXXXXXXXXXX
+AWS_STORAGE_BUCKET_NAME=XXXXXXXXXXXXXXXX
+```
+
+Files: `.envs/.pro/.postgres`
+```text
+POSTGRES_HOST_REPLICA=replica-host.com/xxxxx
+```
+
+### Run server
 Being at the root of the project directory.
 ```bash
   export COMPOSE_FILE=docker-compose.dev.yml
